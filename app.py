@@ -15,7 +15,7 @@ def search():
 
 @app.route('/city', methods =['POST'] )
 def search_city():
-    API_KEY = 'e10b3fd08bb01dddd6b295555f86c4e3'  # initialize your key here
+    API_KEY = ''  # initialize your key here
 
     city = request.form['city']
    # city = request.args.get('q')  # city name passed as argument
