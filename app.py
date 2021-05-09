@@ -15,7 +15,7 @@ def search():
 
 @app.route('/city', methods =['POST'] )
 def search_city():
-    API_KEY = ''  # initialize your key here
+    API_KEY = 'e10b3fd08bb01dddd6b295555f86c4e3'  # initialize your key here
 
     city = request.form['city']
    # city = request.args.get('q')  # city name passed as argument
@@ -29,9 +29,15 @@ def search_city():
         message = response.get('message', '')
         return f'Error getting temperature for {city.title()}. Error message = {message}'
     
-    msg = response['weather'][0]['main']
+   
+    weather = {
+            'city' : city,
+            'temperature' : round(response['main']['temp'] - 273.15, 2),
+            'description' : response['weather'][0]['description'],
+            'icon' : response['weather'][0]['icon'],
+        }
 
-    return msg
+    return render_template("response.html", weather = weather)
 
 if __name__ == '__main__':
      app.run(debug=True)
